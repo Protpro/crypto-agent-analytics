@@ -36,9 +36,16 @@ Multi-agent system that monitors EVM chains in real-time, detects whale movement
 
 ## Components
 
+- **MEV Agent**: Detects sandwich attacks, frontrunning, arbitrage patterns
+- **Bridge Agent**: Monitors cross-chain bridge transfers, detects exploits
+- **Liquidation Agent**: Tracks DeFi lending liquidations, health factor alerts
 - **Chain Agent**: Connects to EVM RPC nodes, streams pending & confirmed blocks, decodes tx calldata
 - **Whale Agent**: Classifies wallets by balance/tx patterns, tracks accumulation/distribution cycles
 - **Sentiment Agent**: Scrapes CT (Crypto Twitter), runs NLP sentiment model, correlates with on-chain data
+- **Exchange Flow Tracker**: CEX deposit/withdrawal pattern analysis
+- **Divergence Detector**: Contrarian smart money identification
+- **Smart Money Scorer**: ML-based wallet profitability scoring
+- **Order Book Depth Analyzer**: DEX liquidity analysis
 - **Inference Pipeline**: ROCm-accelerated transformer for wallet classification and tx anomaly detection
 - **Alert System**: Telegram/Discord notifications with configurable thresholds
 
@@ -96,6 +103,30 @@ python -m src.models.wallet_classifier --device rocm --model models/wallet-embed
 | Order Book Depth | DEX liquidity analysis |
 | Gini Coefficient | Wealth distribution metrics |
 | Heatmap | Visual cluster of whale activity |
+
+## Dashboard
+
+```bash
+# Start dashboard
+uvicorn src.dashboard.app:app --host 0.0.0.0 --port 8000
+
+# Endpoints
+GET /api/health          # Health check
+GET /api/whales          # Top whale wallets
+GET /api/mev/stats       # MEV detection stats
+GET /api/exchange-flow   # CEX flow analysis
+GET /api/sentiment       # CT sentiment aggregate
+GET /api/liquidation     # Liquidation stats
+GET /api/bridge/volume   # Bridge volume stats
+WS  /ws/live             # Real-time alert stream
+```
+
+## Docker
+
+```bash
+cd docker
+docker-compose up -d
+```
 
 ## Project Structure
 

@@ -1,0 +1,40 @@
+# Crypto Agent Analytics Configuration
+
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+
+chains:
+  ethereum:
+    rpc: https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
+    chain_id: 1
+    block_time: 12
+  bsc:
+    rpc: https://bsc-dataseed.binance.org/
+    chain_id: 56
+    block_time: 3
+  arbitrum:
+    rpc: https://arb1.arbitrum.io/rpc
+    chain_id: 42161
+    block_time: 1
+
+whale:
+  min_value_usd: 100000
+  tracking_window_hours: 24
+  alert_threshold_pct: 5.0
+
+sentiment:
+  poll_interval: 60
+  min_score_alert: 0.7
+  api_key: YOUR_X_API_KEY
+
+alerts:
+  telegram_bot_token: YOUR_TELEGRAM_BOT_TOKEN
+  telegram_chat_id: YOUR_CHAT_ID
+  discord_webhook: YOUR_DISCORD_WEBHOOK
+
+inference:
+  model_path: models/wallet-embed-v1.onnx
+  device: rocm  # rocm or cpu
+  batch_size: 64

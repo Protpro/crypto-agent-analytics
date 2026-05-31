@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.env
+config/settings.yaml
+models/*.onnx
+models/*.bin
+.pytest_cache/
+.mypy_cache/
+*.log
